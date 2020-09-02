@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style media="screen">
+  .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7,
+  .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4,
+  .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto{
+    width: -webkit-fill-available !important;
+  }
+
+  table.table-bordered{
+    border:1px solid black;
+  }
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+
+#loading-bar-spinner.spinner {
+  left: 50%;
+  margin-left: -20px;
+  top: 50%;
+  margin-top: -20px;
+  position: absolute;
+  z-index: 19 !important;
+  -webkit-animation: loading-bar-spinner 400ms linear infinite;
+          animation: loading-bar-spinner 400ms linear infinite;
+}
+
+#loading-bar-spinner.spinner .spinner-icon {
+  width: 40px;
+  height: 40px;
+  border: solid 4px transparent;
+  border-top-color: #00C8B1 !important;
+  border-left-color: #00C8B1 !important;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes loading-bar-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-bar-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+     <a class="navbar-brand" href="#">Moët Hennessy</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarCollapse">
+       <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">Upload</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Download</a>
+         </li>
+       </ul>
+       <form class="form-inline mt-2 mt-md-0">
+         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+       </form>
+     </div>
+    </nav>
+<script type="text/javascript">
+function ultimate(){
+  var data = [];
+  var fdata;
+  var sarr = [];
+  var jdata = [];
+  var harr = [];
+  var carr = [];
+  var carr1 = [];
+  var iarr = [];
+  var iiarr = [];
+  var d;
+  var xx;
+  /*function check(n,i)
+  {
+    var num = n;
+    var iterator = i;
+    var prev = n-1;
+    var next = n+1;
+    if(d[iterator].charAt(prev)==" " || d[iterator].charAt(prev)==undefined)
+    {
+      if(d[iterator].charAt(next)==" " || d[iterator].charAt(next)==undefined)
+      {
+        return 0;
+      }
+      else {
+        if(d[iterator].charAt(next+1)!==" " && d[iterator].charAt(next+1)!==undefined)
+        {
+          var itr = next+1;
+          var word=d[iterator].charAt(next);
+          while(d[iterator].charAt(itr)!==" " && d[iterator].charAt(itr)!==undefined && itr<=d[iterator].length)
+          {
+            word+=d[iterator].charAt(itr);
+            itr++;
+          }
+          return word;
+        }
+        else {
+          return d[iterator].charAt(next);
+        }
+      }
+    }
+    else {
+      if(d[iterator].charAt(prev-1)!==" " && d[iterator].charAt(prev-1)!==undefined)
+      {
+        var itr = prev-1;
+        var word=d[iterator].charAt(prev);
+        while(d[iterator].charAt(itr)!==" " && d[iterator].charAt(itr)!==undefined)
+        {
+          word+=d[iterator].charAt(itr);
+          itr--;
+        }
+        var w = word.split("").reverse().join("")
+        return w;
+      }
+      else {
+        return d[iterator].charAt(prev);
+      }
+    }
+  }*/
+
+  /*function check2(n,i)
+  {
+    var num = n;
+    var iterator = i;
+    var prev = n-1;
+    var next = n+1;
+    if(d[iterator].charAt(next)==" " || d[iterator].charAt(next)==undefined)
+    {
+      return d[iterator].charAt(n);
+    }
+    else {
+      if(d[iterator].charAt(next)!==" " && d[iterator].charAt(next)!==undefined)
+      {
+        var itr = next+1;
+        var word=d[iterator].charAt(next);
+        while(d[iterator].charAt(itr)!==" " && d[iterator].charAt(itr)!==undefined && itr<=d[iterator].length)
+        {
+          word+=d[iterator].charAt(itr);
+          itr++;
+        }
+        return word;
+      }
+      else {
+        return d[iterator].charAt(n)+d[iterator].charAt(next);
+      }
+    }
+  }*/
+  $.ajax({
+    url: "/extractnum",
+    type: "POST",
+    data: { fname: 'jfile2-1.jpg', coordinates: [{ x1:'1194', y1:'93', x2:'1879', y2:'1376' }] },
+    success: function(data){
+       console.log(data);
+       if(data=="proceed")
+       {
+         $.ajax({
+           url: "/mhd-num",
+           type: "GET",
+           success: function(data1)
+           {
+             d = data1.split("\n");
+             console.log(d);
+
+             for(var i=0;i<d.length;i++)
+             {
+               if(i>=2)
+               {
+                 if(i==2)
+                 {
+                   harr.push(d[i]);
+                 }
+                 if(i>2)
+                 {
+
+                   if(d[i].length<14)
+                   {
+                     iiarr.push(iarr);
+                     iarr = [];
+                   }else {
+                     iarr.push(d[i]);
+                   }
+                 }
+               }
+             }
+             console.log(harr);
+             console.log(iiarr);
+             for(var m=0;m<carr.length;m++)
+             {
+               var tmpr = [];
+               tmpr = carr[m].concat(iiarr[m]);
+               carr1.push(tmpr);
+             }
+             console.log(carr1);
+             var arrx = [];
+             var arry = [];
+             var xx;
+             for(var m=0;m<carr1.length;m++)
+             {
+               var tlen = carr1[m].length;
+               var len1 = tlen-1;
+               half = len1/2;
+               len1 = half+1;
+               xx = xx+"<tr><td class='col-md-2'>"+carr1[m][0]+"</td>";
+               for(var n=1;n<len1;n++)
+               {
+                 if(n>1)
+                 {
+                   var ts = "<td class='col-md-2'>&nbsp;</td>";
+                 }else { var ts = ""; }
+                 if(n>=1)
+                 {
+                   var put = "</tr><tr>";
+                   var put1 = "</tr><tr>";
+                 }else { var put = ""; var put1 = ""; }
+                 var last = carr1[m][len1+n-1];
+                 //console.log(last);
+                 if(last.substring(0,1)==" ")
+                 {
+                   last = last.substring(1,last.length);
+                 }
+
+                 if(n==len1-1)
+                 {
+                   var lastlen = last.replace(/[^0-9]/g,"").length;
+                   if(last.indexOf(",")!=-1)
+                   {
+                     if(lastlen<7)
+                     {
+                       //last = "0 "+last;
+                     }
+                   }
+                   else {
+                     if(lastlen<6)
+                     {
+                       //last = "0 "+last;
+                     }
+                   }
+                   var addlast = "<td class='col-md-2'>&nbsp;</td>";
+                 } else { var addlast = ""; }
+                 last = last.replace(/\s/g,"&nbsp;");
+                 xx = xx+n+ts+"<td class='col-md-5'>"+carr1[m][n]+"</td><td class='col-md-5' style='word-spacing: 0.1cm; '>"+last+"</td>"+put1;
+               }
+               xx = xx+"</tr>";
+             }
+             var pp = harr[12];
+             pp = pp.replace(/\s/g,"&nbsp;");
+             $("#throw").html("<thead><tr> <th class='col-md-2'>"+harr[3]+"</th> <th class='col-md-5'>"+harr[4]+"<th class='col-md-5' style='word-spacing: 0.05cm; '>"+pp+"</th> </tr></thead><tbody>"+xx+"</tbody>");
+             $(".ph1").html(harr[0]);
+             $(".ph").html("<center>"+harr[1]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[2]+"</center>");
+           }
+         })
+       }
+
+    }
+  })
+/*  $.ajax({
+    //url: "out3.txt",
+    url: "file2jnum.txt",
+    type: "GET",
+    success: function(d){
+      fdata = d.split("\n");
+
+      var filterNum = (str) => {
+          var numericalChar = new Set([ ","," ","0","1","2","3","4","5","6","7","8","9" ]);
+          str = str.split("").filter(char => numericalChar.has(char)).join("");
+          str = str.replace(", ",",");
+          return str;
+        }
+        for(var i = 0;i<fdata.length;i++)
+        {
+          fdata[i] = fdata[i].replace(/[+{}iI]/g,'1');
+          console.log(fdata[i]);
+          data.push(filterNum(fdata[i]))
+        }
+        console.log(data);
+        for(var i = 0;i<data.length;i++)
+        {
+          if(i>5)
+          {
+            var tmp = data[i];
+            if(tmp.indexOf("750  750")!=-1)
+            {
+              var x = tmp.split("750  750");
+
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750 750")!=-1) {
+              var x = tmp.split("750 750");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750   750")!=-1) {
+              var x = tmp.split("750   750");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750 ")!=-1) {
+              var x = tmp.split("750 ");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("700 700")!=-1) {
+              var x = tmp.split("700 700");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("700  700")!=-1) {
+              var x = tmp.split("700  700");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("375 375")!=-1) {
+              var x = tmp.split("375 375");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.substring(0,2).indexOf("2")!=-1 || tmp.substring(0,2)=="  ") {
+              var y = tmp.substring(2,tmp.length);
+              var x = [];
+              x.push("Total");
+              x.push(y);
+              //var x = tmp.split("2 ");
+              //x[0] = "Total";
+              sarr.push(x);
+            }
+          }
+        }
+        console.log(sarr);
+    }
+  })*/
+
+  $.ajax({
+    //url: "op2.txt",
+    url: "file2jtext.txt",
+    type: "GET",
+    success: function(dat){
+      var tmp;
+      var tmp1;
+      tmp1 = dat.split("\n");
+      for(var i=0;i<tmp1.length;i++)
+      {
+        tmp = tmp1[i];
+        if(/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\a-\z\A-\Z]/.test(tmp))
+        {
+          jdata.push(tmp);
+        }
+      }
+      console.log(jdata);
+      var flag=0;
+      var tmparr = [];
+      for(var j=0;j<jdata.length;j++)
+      {
+        if(j<12)
+        {
+          harr.push(jdata[j]);
+        }
+        if(j>=12)
+        {
+          if(flag==0)
+          {
+            if(jdata[j]!==undefined)
+            {
+              tmparr.push(jdata[j]);
+              var tt = jdata[j].toString();
+              if(tt.indexOf(" ")!=-1)
+              {
+                tt = tt.replace(" ","");
+              }
+              if(tt.indexOf("計")!=-1)
+              {
+                carr.push(tmparr);
+                tmparr = [];
+              }
+            }
+          }
+        }
+      }
+      console.log(harr);
+      console.log(carr);
+
+
+      /*console.log(carr);
+      for(var m=0;m<carr.length;m++)
+      {
+        var len = carr[m].length;
+        for (var i = 0; i < len; i++)
+        {
+          if(Array.isArray(carr[m][i])==true)
+          {
+            carr[m][i] = carr[m][i][1];
+          }
+        }
+      }*/
+      //console.log(carr);
+      console.log("hereeeeeeeeeeeeee");
+      //$("#throw").html("<thead><tr> <th class='col-md-2'>得意先名</th> <th class='col-md-4' >商 品名</th><th class='col-md-4' style='word-spacing: 0.5cm'>入数 大函換算 ケース数 バラ数 売上数 数量(ml)</th> </tr></thead><tbody>"+xx+"</tbody>");
+
+    } // ajax success close
+  })
+}
+var perma;
+var peep1 = [];
+var tarr1 = [];
+var cnt2 = 0;
+var peep = [];
+var tarr = [];
+var cnt = 0;
+function str1(dt)
+{
+
+  for(var k=0;k<dt.length;k++)
+  {
+    if(k>=5)
+    {
+      var cnt3 = 0;
+      if(dt[k]=="")
+      {
+        continue;
+      }
+      if(cnt2==0)
+      {
+        peep1.push(dt[k]);
+      }
+      if(cnt2==1)
+      {
+        peep1.push(dt[k]);
+      }
+      if(cnt2==2)
+      {
+        peep1.push(dt[k]);
+        tarr1.push(peep1);
+        peep1 = [];
+        cnt2=0;
+        cnt3 = 1;
+      }
+      if(cnt3==0)
+      {
+        cnt2++;
+      }
+    }
+  }
+}
+$(document).ready(function(){
+  $("#wait").hide();
+ var ExcelToJSON = function() {
+
+      //this.parseExcel = function(file) {
+        //var reader = new FileReader();
+
+        //reader.onload = function(e) {
+          //var data = e.target.result;
+        /*  var workbook = XLSX.read(data, {
+            type: 'binary'
+          });*/
+          //workbook.SheetNames.forEach(function(sheetName) {
+            // Here is your object
+            //var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+          //  var json_object = JSON.stringify(XL_row_object);
+          $.ajax({
+            url: "output.txt",
+            type: "GET",
+            success: function(data){
+            console.log(data);
+            var arr = [];
+            var header = 0;
+            var product = 0;
+            var stop = 0;
+            var harr = [];
+            var parr = [];
+            var dt;
+            var x = data.split("\n");//JSON.parse(json_object);
+
+            for(var i=0;i<x.length;i++)
+            {
+              arr.push(x[i]);
+            }
+            for(var i=0;i<arr.length;i++)
+            {
+              if(arr[i].indexOf("商品名")!=-1)
+              {
+                header=1;
+                continue;
+              }
+              if(arr[i].indexOf("合計")!=-1)
+              {
+                stop=1;
+              }
+              if(header==0)
+              {
+                harr.push(arr[i]);
+              }
+              else
+              if(stop==0 && header==1){
+                parr.push(arr[i]);
+              }
+
+            }
+            console.log(arr);
+            console.log("**********************");
+            console.log(harr);
+            console.log("**********************");
+            console.log(parr);
+            $(".ph1").html(harr[6]);
+            $(".ph").html("<center>"+harr[1]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[0]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[2]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<strong>"+harr[3]+"</strong>&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[4]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[7]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[8]+"&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;"+harr[9]+"</center><hr><center>"+harr[10]+"</center>");
+
+            for(var j=0;j<parr.length;j++)
+            {
+              var cnt1 = 0;
+              if(cnt==0)
+              {
+                peep.push(parr[j]);
+              }
+              if(cnt==1)
+              {
+                peep.push(parr[j]);
+              }
+              if(cnt==2)
+              {
+                peep.push(parr[j]);
+                tarr.push(peep);
+                peep = [];
+                cnt=0;
+                cnt1 = 1;
+              }
+              if(cnt1==0)
+              {
+                cnt++;
+              }
+
+
+            }
+
+            console.log(tarr);
+          }
+          })
+
+          $.ajax({
+            url: "out1.txt",
+            type: "GET",
+            success: function(data){
+              dt = data.split("\n");
+               console.log(dt);
+               str1(dt);
+               console.log(tarr1);
+               var tarr3 = [];
+               //console.log(tarr3);
+               for(var m=0;m<tarr.length;m++)
+               {
+                 tarr[m]=tarr[m].concat(tarr1[m]);
+               }
+              //var tarr33 = $.merge(tarr,tarr1);
+              console.log(tarr);
+              var xx;
+              for(n=0;n<tarr.length;n++)
+              {
+                var arrx = [];
+                var arry = [];
+                var n4 = tarr[n][4];
+                n4 = n4.split(' ');
+                for(var x=0;x<n4.length;x++)
+                {
+                  if(n4[x]!=="")
+                  {
+                    if(n4[x].indexOf(".")!=-1)
+                    {
+                      n4[x] = n4[x].replace(".","");
+                    }
+                    arrx.push(n4[x]);
+                   }
+                 }
+                //.join('&nbsp;');
+                var n5 = tarr[n][5];
+                n5 = n5.split(' ');
+                for(var x=0;x<n5.length;x++)
+                {
+                  if(n5[x]!=="")
+                  {
+                    if(n5[x].indexOf(".")!=-1)
+                    {
+                      n5[x] = n5[x].replace(".","");
+                    }
+                    arry.push(n5[x]);
+                  }
+                }
+                xx = xx+"<tr><td  class='col-md-3'>"+tarr[n][0]+"</td><td class='col-md-3'>&nbsp;</td><td class='col-md-3'>&nbsp;</td><td class='col-md-3'>&nbsp;</td></tr><tr><td class='col-md-3'>"+tarr[n][1]+"</td><td class='col-md-1'>"+arrx[0]+"</td><td class='col-md-5'>"+arrx[1]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+arrx[2]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+arrx[3]+"</td><td class='col-md-3'>"+arrx[4]+"</td></tr><tr><td class='col-md-3'>"+tarr[n][2]+"</td><td class='col-md-1'>"+arry[1]+"</td><td class='col-md-5'>"+arry[2]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+arry[3]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+arry[4]+"</td><td class='col-md-3'>"+arry[5]+"</td></tr>";
+              }
+              $("#throw").html("<thead><tr> <th class='col-md-3'>商品名</th> <th class='col-md-1'>売掛数量税抜純発上額(掛)<th class='col-md-5'> 純売上数量税抜純売上額(現金) </th> <th class='col-md-3'>純売上数量</th> </tr></thead><tbody>"+xx+"</tbody>");
+            }
+          })
+          //}) //workbook.each end
+        //}; //reader.onload end
+
+        /*reader.onerror = function(ex) {
+          console.log(ex);
+        };*/
+
+        //reader.readAsBinaryString(file);
+      //}; //this.parseExcel end
+  };
+
+  function handleFileSelect() {
+ExcelToJSON();
+    /*var files = evt.target.files; // FileList object
+    var xl2json = new ExcelToJSON();
+    xl2json.parseExcel(files[0]);*/
+  }
+	//document.getElementById('file').addEventListener('change', handleFileSelect, false);
+  $(".scdinp").hide();
+  $(".cl").on("click",function(){
+    $(".scdinp").show();
+    $(".alert").html("<div id='loading-bar-spinner' class='spinner'><div class='spinner-icon'></div></div> Loading, Please Wait!");
+
+    //alert("sgfgdf");
+    function tp(){
+      var vl = $(".in").val();
+      vl = vl.split("\\");
+      vl = vl[vl.length-1];
+      perma = vl;
+      console.log(vl);
+      //$("#wait").show();
+      $.ajax({
+        url: "tes",
+        type: "GET",
+        data: { "vl" : vl },
+        success: function(data){
+          console.log(data);
+          if(data=="success");
+          {
+            $(".alert").html("Data has been extracted. Please verify the data in the table below. <br> Once done, please click Save button to upload the data into the database.");
+            $(".cl2").click();
+            //alert();
+            $("#wait").hide();
+            $(".scdinp").show();
+          }
+        }
+      })
+    }
+    tp();
+    //$("#wait").show();
+    //console.log($("#wait").css('display'));
+    /*if ($("#wait").css('display')=="none") {
+      $("#wait").show();
+    }
+    else{ tp(); }*/
+
+  })
+
+  $(".cl2").on("click",function(){
+    if(perma.indexOf("omori")!=-1)
+    {
+      handleFileSelect();
+    }
+    else {
+      ultimate();
+    }
+
+    $(".container").show();
+        $("#throw").show();
+
+setTimeout(function(){
+
+
+  let activeCell = null;
+  let cells = document.getElementsByTagName('td');
+  for(let cell of cells) {
+      cell.addEventListener('dblclick', function() {
+          if(this.childElementCount == 0) {
+              let input = document.createElement('input');
+              input.setAttribute('type', 'textbox');
+              input.setAttribute('value', this.innerHTML);
+              this.innerHTML = "";
+              this.appendChild(input);
+              activeCell = this;
+          }
+      });
+  }
+  document.addEventListener('mouseup', function(e) {
+      if(activeCell != null) {
+          let container = activeCell.children[0];
+          if (!$(container).is(e.target) && $(container).has(e.target).length === 0)
+          {
+              activeCell.innerHTML = container.value;
+              activeCell = null;
+          }
+      }
+  });
+
+
+ }, 3000);
+
+
+
+
+
+    }) // click close
+}) //doc.ready close
+</script>
+
+
+<main role="main" class="container">
+ <div class="jumbotron">
+
+<div class="row">
+  <div class="col-6">
+    <h2>Japanese Invoice OCR</h2>
+    <p class="lead">Upload your files here!</p>
+    <form class="form-inline mt-2 mt-md-0">
+      <div class="fstinp col-md-12">
+      <input type = "file" name = "file" class="form-control in" accept = "files/*" multiple>
+       <button type = "button" value = "submit" class="cl btn btn-outline-primary my-2 my-sm-0 ml-2">Upload</button>
+        </div>
+        <br><br>
+
+    </form>
+  </div>
+  <div class="col-6">
+        <h6 class="text-muted">Recent Files</h6>
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fa fa-file text-danger mx-2"></i>Omori.jpg</li>
+          <li class="list-group-item"><i class="fa fa-file text-success mx-2"></i>mhd.png</li>
+        </ul>
+      </div>
+
+</div>
+<div class="scdinp col-md-12" style="margin-top: 2rem;">
+  <div class="alert alert-primary" role="alert">
+
+ </div>
+<button type = "button" value = "submit" class="cl2  btn btn-outline-primary my-2 my-sm-0" style="display: none;">Submit</button>
+<br>
+
+</div>
+
+ </div>
+</main>
+<div class="container">
+    <section class="container" style="display: none;">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div style="font-size: 16px;">
+              <center>
+                <h1 class="ph1"></h1>
+              </center>
+          </div>
+        </div>
+    		<div class="panel-heading"><div class="ph">
+
+          </div>
+        </div>
+      </div>
+</section>
+  <table id="throw" class="table table-bordered table-condensed col-md-12"  style="display: none;">
+  </table>
+
+<script type="text/javascript">
+
+</script>
+</div>
+  </body>
+</html>

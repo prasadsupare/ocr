@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="./xlsx.full.min.js"></script>
+  </head>
+  <body>
+<script type="text/javascript">
+  var data = [];
+  var fdata;
+  var sarr = [];
+  var jdata = [];
+  var harr = [];
+  var carr = [];
+  var carr1 = [];
+  $.ajax({
+    url: "out3.txt",
+    type: "GET",
+    success: function(d){
+      fdata = d.split("\n");
+
+      var filterNum = (str) => {
+          var numericalChar = new Set([ ","," ","0","1","2","3","4","5","6","7","8","9" ]);
+          str = str.split("").filter(char => numericalChar.has(char)).join("");
+          str = str.replace(", ",",");
+          return str;
+        }
+        for(var i = 0;i<fdata.length;i++)
+        {
+          fdata[i] = fdata[i].replace(/[+{}iI]/g,'1');
+          console.log(fdata[i]);
+          data.push(filterNum(fdata[i]))
+        }
+        console.log(data);
+        for(var i = 0;i<data.length;i++)
+        {
+          if(i>5)
+          {
+            var tmp = data[i];
+            if(tmp.indexOf("750  750")!=-1)
+            {
+              var x = tmp.split("750  750");
+
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750 750")!=-1) {
+              var x = tmp.split("750 750");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750   750")!=-1) {
+              var x = tmp.split("750   750");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("750 ")!=-1) {
+              var x = tmp.split("750 ");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("700 700")!=-1) {
+              var x = tmp.split("700 700");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("700  700")!=-1) {
+              var x = tmp.split("700  700");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.indexOf("375 375")!=-1) {
+              var x = tmp.split("375 375");
+              x[0] = x[0].substring(0,4);
+              sarr.push(x);
+            }
+            else if (tmp.substring(0,2).indexOf("2")!=-1 || tmp.substring(0,2)=="  ") {
+              var y = tmp.substring(2,tmp.length);
+              var x = [];
+              x.push("Total");
+              x.push(y);
+              //var x = tmp.split("2 ");
+              //x[0] = "Total";
+              sarr.push(x);
+            }
+          }
+        }
+        console.log(sarr);
+    }
+  })
+  $.ajax({
+    url: "op2.txt",
+    type: "GET",
+    success: function(dat){
+      var tmp;
+      var tmp1;
+      tmp1 = dat.split("\n");
+      for(var i=0;i<tmp1.length;i++)
+      {
+        tmp = tmp1[i];
+        if(/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f\a-\z\A-\Z]/.test(tmp))
+        {
+          jdata.push(tmp);
+        }
+      }
+      console.log(jdata);
+      var flag=0;
+      var tmparr = [];
+      for(var j=0;j<jdata.length;j++)
+      {
+        if(j<12)
+        {
+          harr.push(jdata[j]);
+        }
+        if(j>=12)
+        {
+          if(flag==0)
+          {
+            tmparr.push(jdata[j]);
+            var tt = jdata[j].toString();
+            if(tt.indexOf(" ")!=-1)
+            {
+              tt = tt.replace(" ","");
+            }
+            if(tt.indexOf("計")!=-1)
+            {
+              carr.push(tmparr);
+              tmparr = [];
+            }
+          }
+        }
+      }
+      console.log(harr);
+      console.log(carr);
+      var tmparr1 = [];
+      for(var j=0;j<sarr.length;j++)
+      {
+          if(flag==0)
+          {
+            tmparr1.push(sarr[j]);
+            var tt = sarr[j];
+            if(tt[0]=="Total")
+            {
+              carr1.push(tmparr1);
+              tmparr1 = [];
+            }
+          }
+      }
+      console.log(carr1);
+      for(var m=0;m<carr.length;m++)
+      {
+        carr[m]=carr[m].concat(carr1[m]);
+      }
+      console.log(carr);
+      for(var m=0;m<carr.length;m++)
+      {
+        var len = carr[m].length;
+        for (var i = 0; i < len; i++)
+        {
+          if(Array.isArray(carr[m][i])==true)
+          {
+            carr[m][i] = carr[m][i][1];
+          }
+        }
+      }
+      var arrx = [];
+      var arry = [];
+      var xx;
+      for(var m=0;m<carr.length;m++)
+      {
+        var tlen = carr[m].length;
+        var len1 = tlen-1;
+        half = len1/2;
+        len1 = half+1;
+        xx = xx+"<tr><td class='col-md-2'>"+carr[m][0]+"</td>";
+        for(var n=1;n<len1;n++)
+        {
+          if(n>1)
+          {
+            var ts = "<td class='col-md-2'>&nbsp;</td>";
+          }else { var ts = ""; }
+          if(n>=1)
+          {
+            var put = "</tr><tr>";
+            var put1 = "</tr><tr>";
+          }else { var put = ""; var put1 = ""; }
+          var last = carr[m][len1+n-1];
+          //console.log(last);
+          if(last.substring(0,1)==" ")
+          {
+            last = last.substring(1,last.length);
+          }
+
+          if(n==len1-1)
+          {
+            var lastlen = last.replace(/[^0-9]/g,"").length;
+            if(last.indexOf(",")!=-1)
+            {
+              if(lastlen<7)
+              {
+                last = "0 "+last;
+              }
+            }
+            else {
+              if(lastlen<6)
+              {
+                last = "0 "+last;
+              }
+            }
+            var addlast = "<td class='col-md-2'>&nbsp;</td>";
+          } else { var addlast = ""; }
+          xx = xx+n+ts+"<td class='col-md-4'>"+carr[m][n]+"</td><td class='col-md-4' style='word-spacing: 3cm; '>"+last+"</td>"+put1;
+        }
+        xx = xx+"</tr>";
+      }
+      console.log(xx);
+      $("#throw").html("<thead><tr> <th class='col-md-2'>得意先名</th> <th class='col-md-4' >商 品名</th><th class='col-md-4' style='word-spacing: 0.5cm'>入数 大函換算 ケース数 バラ数 売上数 数量(ml)</th> </tr></thead><tbody>"+xx+"</tbody>");
+
+    }
+  })
+
+</script>
+<div class="container">
+
+    <section class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div style="font-size: 16px;">
+              <center>
+                <h1 class="ph1"></h1>
+              </center>
+          </div>
+        </div>
+    		<div class="panel-heading">
+          <i class="fa fa-bar-chart fa-lg"></i><div class="ph">
+
+          </div>
+        </div>
+      </div>
+</section>
+  <table id="throw" class="table col-md-12">
+  </table>
+</div>
+  </body>
+</html>

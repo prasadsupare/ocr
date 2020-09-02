@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moët Hennessy</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      crossorigin="anonymous"></script>
+  <style media="screen">
+    body {
+  position: fixed;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+}
+
+main {
+  background-repeat: no-repeat;
+/* height: -webkit-fill-available; */
+background-image: url(im.png);
+background-size: 40%;
+background-position-x: 30%;
+}
+.panel {
+  background-color: #fff;
+  border-radius: 0;
+}
+.card {
+  border: 0;
+}
+.card-title  {
+  color: #0f4c75;
+}
+.card-body {
+  color: #0f4c75;
+}
+.form-control {
+  border: 0;
+  border-bottom: 1px solid #0f4c75;
+  border-radius: 0;
+}
+.btn-primary {
+  background-color: #0f4c75;
+  color: #fff;
+  border: 0;
+}
+#registrate {
+  color: #0f4c75;
+  font-weight: 700;
+}
+footer {
+  position: absolute;
+  bottom: 20px;
+  color: #3282b8;
+}
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="col-12 col-lg-3 offset-lg-9 panel h-100 py-5">
+      <div class="card">
+        <h1 class="card-title text-center mb-4" style="padding-bottom: 5px;border-bottom: 5px solid #ae9a609e;">Moët Hennessy</h1>
+        <br><br><br>
+        <h3 class="card-title text-center mb-4">Login</h3>
+        <form action="#" method="POST" class="card-body">
+          <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="form-group text-center pt-4">
+            <input type="button" value="Submit" class="btn logg btn-primary w-100">
+          </div>
+
+        </form>
+        <div class="card-body">
+          <p class="text-center">Don't have an account yet? <a href="#" id="registrate">Register</a></p>
+        </div>
+      </div>
+
+      <footer class="text-center">
+        All rights reserved 2020 | <strong>Moët Hennessy</strong>
+      </footer>
+    </div>
+
+  </main>
+  <script type="text/javascript">
+    $(".logg").on("click",function(){
+      window.location.href="test.html";
+    })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
